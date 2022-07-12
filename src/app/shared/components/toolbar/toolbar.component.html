@@ -1,0 +1,12 @@
+<p-toolbar>
+  <div *ngFor="let action of actions" class="actions ui-toolbar-group-left">
+    <button class="action-button"
+            mat-raised-button
+            [color]="action.color || 'success'"
+            [disabled]="action.disabled"
+            (click)="onClick(action.label)">
+      <mat-icon *ngIf="action.icon">{{action.icon}}</mat-icon>
+      {{action.label}}
+    </button>
+  </div>
+</p-toolbar>

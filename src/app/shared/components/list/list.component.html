@@ -1,0 +1,68 @@
+<p-table #dt [value]="data" 
+            (onHeaderCheckboxToggle)="onSelect()" 
+            (onRowSelect)="onSelect()" 
+            (onRowUnselect)="onSelect()" 
+            [(selection)]="checkedData" 
+            [scrollable]="true" 
+            [columns]="columns" 
+            scrollHeight="71vh">
+  <ng-template *ngIf="caption" pTemplate="caption">
+    {{caption}}
+  </ng-template>
+  <ng-template pTemplate="colgroup" let-columns>
+    <colgroup>
+        <col *ngIf="checkbox">
+        <col *ngFor="let col of columns" >
+        <col *ngIf="hasAction" class="action">
+    </colgroup>
+</ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngIf="checkbox">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th *ngFor="let column of columns">
+        {{ column.label }}
+        <p-dropdown *ngIf="column.hasFilter" 
+                    [options]="columnFilterOptions" 
+                    [appendTo]="'body'" 
+                    (onChange)="dt.filter($event.value, column.name, 'equals')">
+        </p-dropdown>
+      </th>
+      <th *ngIf="hasAction" class="action">Actions</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-d>
+    <tr>
+      <td *ngIf="checkbox">
+        <p-tableCheckbox [value]="d"></p-tableCheckbox>
+      </td>
+      <td *ngFor="let column of columns">
+       <span *ngIf="column.type==='time'">{{d[column.name] |shortDate |date:'short'}}</span>
+       <span *ngIf="column.type==='date'">{{d[column.name] |date:'medium'}}</span>
+       <span *ngIf="column.type===undefined">{{d[column.name]}}</span>
+      </td>
+      <ng-container *ngIf="hasAction">
+        <td>
+          <button *ngFor="let action of actions"
+                  mat-stroked-button
+                  [matTooltip]="getTooltip(d, action.tooltip)"
+                  class="icon mr-3"
+                  [color]="action.color"
+                  [disabled]="(action.disable ? action.disable(action, d) : false)"
+                  [style.display]="(action.hide ? action.hide(d) : '')"
+                  (click)="onClick(d,getIcon(d, action.icon))">
+            <mat-icon>{{getIcon(d, action.icon)}}</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage" let-columns>
+    <tr>
+        <td align="center" [attr.colspan]="columns.length+1">
+            No records found
+        </td>
+    </tr>
+</ng-template>
+</p-table>
