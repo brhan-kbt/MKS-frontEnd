@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { TransporterFormComponent } from '../../ui/transporter-form/transporter-form.component';
 
 @Component({
   selector: 'app-transporter',
@@ -10,12 +12,15 @@ export class TransporterComponent implements OnInit {
     { color: 'success', label: 'New', disabled: false, icon: 'add_circle' }
   ];
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   onAdd(event: any): void {
+   this.dialog.open(TransporterFormComponent, {
+    disableClose: true
+   });
    
   }
 }
