@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transporter.component.scss']
 })
 export class TransporterComponent implements OnInit {
+  actions: any[] = [
+    { color: 'success', label: 'New', disabled: false, icon: 'add_circle' }
+  ];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onAdd(event: any): void {
+   
+  }
 }
