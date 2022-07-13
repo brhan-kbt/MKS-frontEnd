@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-transporter-form',
@@ -7,17 +8,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./transporter-form.component.scss']
 })
 export class TransporterFormComponent implements OnInit {
-  @Output() formSubmit = new EventEmitter<any>();
+  @Output() formSubmit = new EventEmitter();
 
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.fb.group({
-      id: null,
-      code: '',
-      name: '',
-      address: '',
-      contact_phone: ''
+      id: data.id,
+      code: data.code,
+      name: data.name,
+      address: data.address,
+      contact_phone: data.contact_phone
     });
    }
 
@@ -25,7 +27,7 @@ export class TransporterFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
-    
+    const payload = this.form.value;
+    this.formSubmit.emit(payload);
   }
 }
