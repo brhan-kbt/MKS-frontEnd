@@ -1,0 +1,21 @@
+<h3 mat-dialog-title>New Transporter</h3>
+<div mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+            <input type="text" matInput formControlName="code" placeholder="Code">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input type="text" matInput formControlName="name" placeholder="Name">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input type="text" matInput formControlName="address" placeholder="Address">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input type="text" matInput formControlName="contact_phone" placeholder="Contact Phone">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button>Cancel</button>
+    <button mat-raised-button type="submit" (click)="onSubmit()">Save</button>
+</div>

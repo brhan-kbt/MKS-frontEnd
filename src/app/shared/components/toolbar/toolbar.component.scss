@@ -1,0 +1,11 @@
+.actions {
+  display: flex;
+}
+
+.action-button {
+  margin-right: 30px;
+}
+
+::ng-deep .p-toolbar {
+  justify-content: flex-start !important;
+}
