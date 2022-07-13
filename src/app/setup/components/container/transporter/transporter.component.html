@@ -1,3 +1,10 @@
 <cats-toolbar [actions]="actions"
               (actionClick)="onAdd($event)"
 ></cats-toolbar>
+
+<cats-list [columns]="columns"
+           [data]="transporters"
+           [hasAction]="true"
+           [actions]="tableActions"
+           (actionClick)="onEdit($event)"
+></cats-list>
