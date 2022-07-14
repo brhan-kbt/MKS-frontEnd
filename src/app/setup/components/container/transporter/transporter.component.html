@@ -3,7 +3,7 @@
 ></cats-toolbar>
 
 <cats-list [columns]="columns"
-           [data]="transporters"
+           [data]="transporters$|async"
            [hasAction]="true"
            [actions]="tableActions"
            (actionClick)="onEdit($event)"

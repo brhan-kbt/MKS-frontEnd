@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { Column } from '../../../../shared/models/column.model';
 import { EMPTY_TRANSPORTER, Transporter } from '../../../models/transporter.model';
-import { TransporterService } from '../../../state/transporter.service';
+import { TransportersQuery } from '../../../state/transporters.query';
+import { TransportersService } from '../../../state/transporters.service';
 import { TransporterFormComponent } from '../../ui/transporter-form/transporter-form.component';
 
 @Component({
@@ -28,11 +30,14 @@ export class TransporterComponent implements OnInit {
 
   transporters: Transporter[] = [];
 
+  transporters$: Observable<Transporter[]> = this.query.selectAll();
+  
   constructor(private dialog: MatDialog,
-    private service:TransporterService) { }
+    private service:TransportersService,
+    private query: TransportersQuery) { }
 
   ngOnInit(): void {
-   this.transporters = this.service.get();
+   this.service.get();
   }
   
   onEdit(event: any): void {
@@ -43,7 +48,6 @@ export class TransporterComponent implements OnInit {
      
      (dialogRef.componentInstance as any).formSubmit.subscribe((data: any) => {
         this.service.update(data.id, data);
-        this.transporters = this.service.get();
         dialogRef.close();
      });
   }
@@ -55,7 +59,7 @@ export class TransporterComponent implements OnInit {
    });
    
    (dialogRef.componentInstance as any).formSubmit.subscribe((data: any) => {
-      const payload = {...data, id: 2};
+      const payload = {...data, id: Math.floor(Math.random()*10000)};
       this.service.add(payload);
       dialogRef.close();
    });
