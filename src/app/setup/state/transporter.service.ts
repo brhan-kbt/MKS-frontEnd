@@ -6,7 +6,8 @@ import { Transporter } from '../models/transporter.model';
 })
 export class TransporterService {
   transporters: Transporter[] = [
-    {id: 1, code: 'ABC Transporter', name: "ABC Transporter", address: 'Test Address', contact_phone: '0912334455'}
+    {id: 1, code: 'ABC Transporter', name: "ABC Transporter", address: 'Test Address', contact_phone: '0912334455'},
+    {id: 2, code: 'ZZZ Transporter', name: "ZZZ Transporter", address: 'ZZZ Test Address', contact_phone: '0912334455'},
   ];
 
   constructor() { }
@@ -20,14 +21,6 @@ export class TransporterService {
   }
 
   update(id: any, newTransporter: Transporter): void {
-    for (let transporter of this.transporters) {
-      if (id === transporter.id) {
-        transporter = newTransporter;
-        // transporter.code = newTransporter.code;
-        // transporter.name = newTransporter.name;
-        // transporter.address = newTransporter.address;
-        // transporter.contact_phone = newTransporter.contact_phone;
-      }
-    }
+    this.transporters = this.transporters.map((transporter) => transporter.id === id ? transporter = newTransporter : transporter);
   }
 }
