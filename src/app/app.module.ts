@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SetupModule } from './setup/setup.module';
 import { SharedModule } from './shared/shared.module';
 import { AppCommonModule } from './app.common.module';
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { AppCommonModule } from './app.common.module';
     BrowserAnimationsModule,
     SetupModule,
     SharedModule,
-    AppCommonModule
+    AppCommonModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
