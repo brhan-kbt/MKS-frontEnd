@@ -43,7 +43,7 @@ export class TransporterComponent implements OnInit {
      
      (dialogRef.componentInstance as any).formSubmit.subscribe((data: any) => {
         this.service.update(data.id, data);
-        this.service.get();
+        this.transporters = this.service.get();
         dialogRef.close();
      });
   }
