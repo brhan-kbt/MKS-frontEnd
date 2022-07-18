@@ -9,6 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { AppCommonModule } from './app.common.module';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { environment } from '../environments/environment';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,13 @@ import { environment } from '../environments/environment';
     SetupModule,
     SharedModule,
     AppCommonModule,
-    environment.production ? [] : AkitaNgDevtools.forRoot()
+    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    ToastModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

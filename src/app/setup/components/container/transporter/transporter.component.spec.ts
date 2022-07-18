@@ -1,4 +1,7 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MessageService } from 'primeng/api';
 
 import { TransporterComponent } from './transporter.component';
 
@@ -8,7 +11,14 @@ describe('TransporterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TransporterComponent ]
+      declarations: [ TransporterComponent ],
+      imports: [
+        MatDialogModule,
+        HttpClientTestingModule
+      ],
+      providers: [
+        MessageService
+      ]
     })
     .compileComponents();
   });
