@@ -1,4 +1,4 @@
-export interface TransportOfferItem {
+export interface OfferItem {
   id: number;
   transport_offer_id: number;
   transport_bid_item_id: number;
@@ -7,7 +7,7 @@ export interface TransportOfferItem {
   rank: number;
 }
 
-export const EMPTY_TRANSPORT_OFFER_ITEM: TransportOfferItem = {
+export const EMPTY_OFFER_ITEM: OfferItem = {
   id: null,
   transport_offer_id: null,
   transport_bid_item_id: null,
