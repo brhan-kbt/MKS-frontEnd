@@ -16,7 +16,7 @@ export class OfferItemsService {
     {id: 5, transport_offer_id: 2, transport_bid_item_id: 2, price: 17500, winner: false, rank: 3}
   ];
 
-  constructor(private OfferItemsStore: OfferItemsStore, private http: HttpClient) {
+  constructor(private OfferItemsStore: OfferItemsStore) {
   }
 
 
