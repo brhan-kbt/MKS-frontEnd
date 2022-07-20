@@ -37,7 +37,7 @@ export class TransporterComponent implements OnInit {
     private query: TransportersQuery) { }
 
   ngOnInit(): void {
-   this.service.get();
+   this.service.get().subscribe();
   }
   
   onEdit(event: any): void {
@@ -47,7 +47,7 @@ export class TransporterComponent implements OnInit {
      });
      
      (dialogRef.componentInstance as any).formSubmit.subscribe((data: any) => {
-        this.service.update(data.id, data);
+        this.service.update(data.id, data).subscribe();
         dialogRef.close();
      });
   }
@@ -59,8 +59,7 @@ export class TransporterComponent implements OnInit {
    });
    
    (dialogRef.componentInstance as any).formSubmit.subscribe((data: any) => {
-      const payload = {...data, id: Math.floor(Math.random()*10000)};
-      this.service.add(payload);
+      this.service.add(data).subscribe();
       dialogRef.close();
    });
   }
