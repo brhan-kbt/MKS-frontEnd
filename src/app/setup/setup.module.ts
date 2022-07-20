@@ -6,12 +6,20 @@ import { TransporterComponent } from './components/container/transporter/transpo
 import { SharedModule } from '../shared/shared.module';
 import { TransporterFormComponent } from './components/ui/transporter-form/transporter-form.component';
 import { AppCommonModule } from '../app.common.module';
+import { TransportOfferComponent } from './components/container/transport-offer/transport-offer.component';
+import { TransportOfferFormComponent } from './components/ui/transport-offer-form/transport-offer-form.component';
+import { TransportOfferItemComponent } from './components/container/transport-offer-item/transport-offer-item.component';
+import { TransportOfferItemFormComponent } from './components/ui/transport-offer-item-form/transport-offer-item-form.component';
 
 
 @NgModule({
   declarations: [
     TransporterComponent,
-    TransporterFormComponent
+    TransporterFormComponent,
+    TransportOfferComponent,
+    TransportOfferFormComponent,
+    TransportOfferItemComponent,
+    TransportOfferItemFormComponent
   ],
   imports: [
     CommonModule,
