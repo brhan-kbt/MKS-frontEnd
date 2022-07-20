@@ -5,7 +5,7 @@ import { TransportOffersStore, TransportOffersState } from './transport-offers.s
 @Injectable({ providedIn: 'root' })
 export class TransportOffersQuery extends QueryEntity<TransportOffersState> {
 
-  constructor(protected store: TransportOffersStore) {
+  constructor(protected override store: TransportOffersStore) {
     super(store);
   }
 

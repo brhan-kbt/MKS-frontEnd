@@ -2,27 +2,31 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ID } from '@datorama/akita';
 import { tap } from 'rxjs/operators';
-import { TransportOffer } from './transport-offer.model';
+import { TransportOffer } from '../models/transport-offer.model';
 import { TransportOffersStore } from './transport-offers.store';
 
 @Injectable({ providedIn: 'root' })
 export class TransportOffersService {
 
-  constructor(private transportOffersStore: TransportOffersStore, private http: HttpClient) {
+  transport_offers: TransportOffer[] = [
+    {id: 1, transport_bid_id: 1, transporter_id: 1, offer_date: '7/20/2022', bid_bond_amount: 1000},
+    {id: 2, transport_bid_id: 1, transporter_id: 2, offer_date: '7/19/2022', bid_bond_amount: 1000},
+    {id: 3, transport_bid_id: 2, transporter_id: 3, offer_date: '7/15/2022', bid_bond_amount: 1000},
+  ];
+
+  constructor(private transportOffersStore: TransportOffersStore) {
   }
 
 
   get() {
-    return this.http.get<TransportOffer[]>('https://api.com').pipe(tap(entities => {
-      this.transportOffersStore.set(entities);
-    }));
+    this.transportOffersStore.set(this.transport_offers);
   }
 
   add(transportOffer: TransportOffer) {
     this.transportOffersStore.add(transportOffer);
   }
 
-  update(id, transportOffer: Partial<TransportOffer>) {
+  update(id: any, transportOffer: Partial<TransportOffer>) {
     this.transportOffersStore.update(id, transportOffer);
   }
 

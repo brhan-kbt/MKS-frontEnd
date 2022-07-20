@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
-import { TransportOffer } from './transport-offer.model';
+import { TransportOffer } from '../models/transport-offer.model';
 
 export interface TransportOffersState extends EntityState<TransportOffer> {}
 
