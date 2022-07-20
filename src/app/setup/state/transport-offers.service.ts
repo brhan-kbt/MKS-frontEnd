@@ -9,9 +9,9 @@ import { TransportOffersStore } from './transport-offers.store';
 export class TransportOffersService {
 
   transport_offers: TransportOffer[] = [
-    {id: 1, transport_bid_id: 1, transporter_id: 1, offer_date: '7/20/2022', bid_bond_amount: 1000},
-    {id: 2, transport_bid_id: 1, transporter_id: 2, offer_date: '7/19/2022', bid_bond_amount: 1000},
-    {id: 3, transport_bid_id: 2, transporter_id: 3, offer_date: '7/15/2022', bid_bond_amount: 1000},
+    {id: 1, transport_bid_id: 1, transporter_id: 1, offer_date: '2022-07-14', bid_bond_amount: 1000},
+    {id: 2, transport_bid_id: 1, transporter_id: 2, offer_date: '2022-07-19', bid_bond_amount: 1000},
+    {id: 3, transport_bid_id: 2, transporter_id: 3, offer_date: '2022-06-30', bid_bond_amount: 1000},
   ];
 
   constructor(private transportOffersStore: TransportOffersStore) {
