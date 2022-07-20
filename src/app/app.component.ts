@@ -20,4 +20,8 @@ export class AppComponent {
   onTransporter(): void {
     this.router.navigate(['/transporters'], {relativeTo: this.route})
   }
+
+  onTransportOffer(): void{
+    this.router.navigate(['/transport-offer'], {relativeTo: this.route})
+  }
 }
