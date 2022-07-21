@@ -1,1 +1,10 @@
-<p>transport-offer-item works!</p>
+<cats-toolbar [actions]="actions"
+              (actionClick)="onAdd($event)"
+></cats-toolbar>
+
+<cats-list [columns]="columns"
+           [data]="offerItems$|async"
+           [hasAction]="true"
+           [actions]="tableActions"
+           (actionClick)="onEdit($event)"
+></cats-list>

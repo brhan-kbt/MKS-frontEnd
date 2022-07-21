@@ -77,6 +77,7 @@ export class TransportOfferComponent implements OnInit {
     });
 
     (dialogRef.componentInstance as any).formSubmit.subscribe((data: any) => {
+      data.id = Math.floor(Math.random()*1000);
       this.service.add(data);
       dialogRef.close();
     });

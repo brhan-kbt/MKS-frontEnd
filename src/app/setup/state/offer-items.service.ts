@@ -20,8 +20,18 @@ export class OfferItemsService {
   }
 
 
-  get() {
-    this.OfferItemsStore.set(this.offer_items);
+  get(id?: any) {
+    if(id){
+      var filtered_items: OfferItem[] = [];
+      for (const offerItem of this.offer_items) {
+        if(offerItem.transport_offer_id == id){
+          filtered_items.push(offerItem);
+        }
+      }
+      this.OfferItemsStore.set(filtered_items);
+    }else{
+      this.OfferItemsStore.set(this.offer_items);
+    }
   }
 
   add(OfferItem: OfferItem) {

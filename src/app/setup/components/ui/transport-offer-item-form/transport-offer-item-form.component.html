@@ -1,1 +1,19 @@
-<p>transport-offer-item-form works!</p>
+<h3 mat-dialog-title>New Transporter</h3>
+<div mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+            <mat-label>Transport Bid Item</mat-label>
+            <mat-select formControlName="transport_bid_item_id">
+                <mat-option value="" selected></mat-option>
+                <mat-option *ngFor="let bid of bid_items" [value]="bid.id">{{bid.id}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input type="number" matInput formControlName="price" placeholder="Price">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button type="submit" (click)="onSubmit()">Save</button>
+</div>
