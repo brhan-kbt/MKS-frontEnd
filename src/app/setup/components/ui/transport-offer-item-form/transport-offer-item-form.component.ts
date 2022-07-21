@@ -22,7 +22,7 @@ export class TransportOfferItemFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) {
       this.form = this.fb.group({
         id: data.id,
-        transport_bid_item_id: [data.transport_bid_item_id],
+        transport_bid_item_id: data.transport_bid_item_id,
         price: data.price,
         winner: data.winner,
         rank: data.rank
