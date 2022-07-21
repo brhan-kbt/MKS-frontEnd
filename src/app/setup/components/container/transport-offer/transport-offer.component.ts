@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { EMPTY_TRANSPORT_OFFER, TransportOffer } from 'src/app/setup/models/transport-offer.model';
 import { TransportOffersQuery } from 'src/app/setup/state/transport-offers.query';
@@ -37,13 +38,23 @@ export class TransportOfferComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
     private service: TransportOffersService,
-    private query: TransportOffersQuery) { }
+    private query: TransportOffersQuery,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.service.get();
   }
 
+  onClick(event: any): void{
+    if(event.type === "edit")
+      this.onEdit(event);
+    if(event.type === "description")
+      this.onDescription(event);
+  }
+
   onEdit(event: any): void {
+
     const dialogRef = this.dialog.open(TransportOfferFormComponent, {
       disableClose: true,
       data: event.item
@@ -73,6 +84,10 @@ export class TransportOfferComponent implements OnInit {
     (dialogRef.componentInstance as any).formCancel.subscribe(() => {
       dialogRef.close();
     });
+  }
+
+  onDescription(event: any): void{
+    this.router.navigate([`/transport-offer/${event.item.id}`], {relativeTo: this.route})
   }
 
 
