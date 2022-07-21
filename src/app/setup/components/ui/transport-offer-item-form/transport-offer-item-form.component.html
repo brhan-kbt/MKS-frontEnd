@@ -7,13 +7,15 @@
                 <mat-option value="" selected></mat-option>
                 <mat-option *ngFor="let bid of bid_items" [value]="bid.id">{{bid.id}}</mat-option>
             </mat-select>
+            <mat-error *ngIf="form.get('transport_bid_item_id').touched && form.get('transport_bid_item_id').invalid">{{getErrorMessage('transport_bid_item_id')}}</mat-error>
         </mat-form-field>
         <mat-form-field class="full-width">
             <input type="number" matInput formControlName="price" placeholder="Price">
+            <mat-error *ngIf="form.get('price').touched && form.get('price').invalid">{{getErrorMessage('price')}}</mat-error>
         </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions align="end">
     <button mat-raised-button (click)="onCancel()">Cancel</button>
-    <button mat-raised-button type="submit" (click)="onSubmit()">Save</button>
+    <button mat-raised-button [disabled]="this.form.invalid" type="submit" (click)="onSubmit()">Save</button>
 </div>

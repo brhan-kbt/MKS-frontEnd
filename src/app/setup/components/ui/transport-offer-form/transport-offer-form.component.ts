@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DummyDataService } from 'src/app/setup/state/dummies/dummy-data.service';
 
@@ -18,16 +18,16 @@ export class TransportOfferFormComponent implements OnInit {
   transport_bids: any[];
   transporters: any[];
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: FormBuilder,
     private dummy: DummyDataService,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      this.form = this.fb.group({
-        id: data.id,
-        transport_bid_id: data.transport_bid_id,
-        transporter_id: data.transporter_id,
-        offer_date: data.offer_date,
-        bid_bond_amount: data.bid_bond_amount
-      }); 
+    this.form = this.fb.group({
+      id: data.id,
+      transport_bid_id: [data.transport_bid_id, [Validators.required]],
+      transporter_id: [data.transporter_id, [Validators.required]],
+      offer_date: [data.offer_date, [Validators.required]],
+      bid_bond_amount: [data.bid_bond_amount, [Validators.required, Validators.min(0)]]
+    });
   }
 
   ngOnInit(): void {
@@ -36,12 +36,30 @@ export class TransportOfferFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const payload = this.form.value;
-    this.formSubmit.emit(payload);
+    if (this.form.valid) {
+      const payload = this.form.value;
+      this.formSubmit.emit(payload);
+    }
   }
 
   onCancel(): void {
     this.formCancel.emit();
+  }
+
+  getErrorMessage(formControl: string): string | void {
+    if (formControl === "bid_bond_amount") {
+      if (this.form.get('bid_bond_amount').hasError('required')) {
+        return 'this field is required';
+      }
+      if (this.form.get('bid_bond_amount').hasError('min')) {
+        return 'minimum amount is 0';
+      }
+    } else {
+      
+      if (this.form.get(formControl).hasError('required')) {
+        return 'this field is required';
+      }
+    }
   }
 
 }
