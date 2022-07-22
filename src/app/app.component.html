@@ -1,6 +1,9 @@
 <p-toast></p-toast>
+<div class="navbar">
 <div class="header">
-    <h1 (click)="homeClicked()">Transport Managment</h1>
-    <button mat-raised-button (click)="onTransporter()">Register Transporters</button>
+    <h2 (click)="homeClicked()">Transport Managment</h2>
+    <a mat-button (click)="onTransporter()">Transporters</a>
+    <a mat-button (click)="onTransportBid()">Transport Bid</a>
+    </div>
 </div>
 <router-outlet></router-outlet>

@@ -1,0 +1,11 @@
+
+<cats-toolbar [actions]="actions"
+(actionClick)="onAdd($event)"
+></cats-toolbar>
+
+<cats-list [columns]="columns"
+           [data]="transport_bid_item$|async"
+           [hasAction]="true"
+           [actions]="tableActions"
+           (actionClick)="onEdit($event)"
+></cats-list>

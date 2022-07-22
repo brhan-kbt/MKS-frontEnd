@@ -4,18 +4,26 @@
         <mat-form-field class="full-width">
             <input type="text" matInput formControlName="code" placeholder="Code">
         </mat-form-field>
+        <mat-error *ngIf="form.get('code').touched && form.get('code').invalid">{{getErrorMessage('code')}}</mat-error>
+
         <mat-form-field class="full-width">
             <input type="text" matInput formControlName="name" placeholder="Name">
         </mat-form-field>
+        <mat-error *ngIf="form.get('name').touched && form.get('name').invalid">{{getErrorMessage('name')}}</mat-error>
+
         <mat-form-field class="full-width">
             <input type="text" matInput formControlName="address" placeholder="Address">
         </mat-form-field>
+        <mat-error *ngIf="form.get('address').touched && form.get('address').invalid">{{getErrorMessage('address')}}</mat-error>
+
         <mat-form-field class="full-width">
             <input type="text" matInput formControlName="contact_phone" placeholder="Contact Phone">
         </mat-form-field>
+        <mat-error *ngIf="form.get('contact_phone').touched && form.get('contact_phone').invalid">{{getErrorMessage('contact_phone')}}</mat-error>
+
     </form>
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-raised-button>Cancel</button>
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
     <button mat-raised-button type="submit" (click)="onSubmit()">Save</button>
 </div>

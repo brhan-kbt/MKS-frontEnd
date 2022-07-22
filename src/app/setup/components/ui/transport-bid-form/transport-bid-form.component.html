@@ -1,0 +1,63 @@
+<h3 mat-dialog-title>New Transport Bid</h3>
+<div mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+            <input type="text" matInput formControlName="reference_no" placeholder="Reference Number">
+        </mat-form-field>
+        <mat-error *ngIf="form.get('reference_no').touched && form.get('reference_no').invalid">{{getErrorMessage('reference_no')}}</mat-error>
+
+        <mat-form-field class="full-width">
+            <textarea matInput formControlName="description" placeholder="Description"></textarea>
+        </mat-form-field>
+        <mat-error *ngIf="form.get('description').touched && form.get('description').invalid">{{getErrorMessage('description')}}</mat-error>
+
+        <div class="dates">
+            <div class="fields">
+                <mat-form-field class="full-width">
+                    <input type="date" matInput formControlName="start_date" placeholder="Start Date">
+                </mat-form-field>
+                <mat-error *ngIf="form.get('start_date').touched && form.get('start_date').invalid">{{getErrorMessage('start_date')}}</mat-error>
+            </div>
+            <div class="fields">
+                <mat-form-field class="full-width">
+                    <input type="date" matInput formControlName="end_date" placeholder="End Date">
+                </mat-form-field>
+                <mat-error *ngIf="form.get('end_date').touched && form.get('end_date').invalid">{{getErrorMessage('end_date')}}</mat-error>
+            </div>
+            <div class="fields">
+                <mat-form-field class="full-width">
+                    <input type="date" matInput formControlName="opening_date" placeholder="Opening Date">
+                </mat-form-field>
+                <mat-error *ngIf="form.get('opening_date').touched && form.get('opening_date').invalid">{{getErrorMessage('opening_date')}}</mat-error>
+        
+            </div>
+        </div>
+        <mat-form-field class="full-width">
+            <input type="text" matInput formControlName="status" placeholder="Status">
+        </mat-form-field>
+        <mat-error *ngIf="form.get('status').touched && form.get('status').invalid">{{getErrorMessage('status')}}</mat-error>
+
+
+        <mat-form-field class="full-width">
+            <mat-label>Transport Plans</mat-label>
+            <mat-select formControlName="transport_plan_id">
+                <mat-option value="" selected></mat-option>
+                <mat-option *ngFor="let transportPlan of transportPlans" [value]="transportPlan.id">
+                    {{transportPlan.id}}
+                </mat-option>
+                </mat-select>
+        </mat-form-field>
+        <mat-error *ngIf="form.get('transport_plan_id').touched && form.get('transport_plan_id').invalid">{{getErrorMessage('transport_plan_id')}}</mat-error>
+
+
+        <mat-form-field class="full-width">
+            <input type="number" matInput formControlName="bid_bond_amount" placeholder="Bid Bond Amount">
+        </mat-form-field>
+        <mat-error *ngIf="form.get('bid_bond_amount').touched && form.get('bid_bond_amount').invalid">{{getErrorMessage('bid_bond_amount')}}</mat-error>
+
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button  type="submit" (click)="onSubmit()">Save</button>
+</div>

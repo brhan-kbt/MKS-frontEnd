@@ -20,4 +20,16 @@ export class AppComponent {
   onTransporter(): void {
     this.router.navigate(['/transporters'], {relativeTo: this.route})
   }
+
+  onTransportBid()
+  {
+    this.router.navigate(['/transport_bid'], {relativeTo: this.route})
+  }
+
+  onTransportBidItem()
+  {
+    this.router.navigate(['/transport_bid_item'], {relativeTo: this.route})
+  }
+
+
 }

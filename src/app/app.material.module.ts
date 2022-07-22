@@ -11,6 +11,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
 
 
 @NgModule({
@@ -26,7 +30,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
         MatMenuModule,
         MatCheckboxModule,
         MatSelectModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatDatepickerModule,
+        MatToolbarModule
     ]
 })
 export class MaterialModule { }

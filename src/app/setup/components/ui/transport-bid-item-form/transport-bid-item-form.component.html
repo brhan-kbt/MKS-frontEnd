@@ -1,0 +1,37 @@
+<h3 mat-dialog-title>New Transport Bid Item</h3>
+<div mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+            <input type="number" readonly matInput formControlName="transport_bid_id" placeholder="Transport Bid Id">
+        </mat-form-field>
+        <mat-error *ngIf="form.get('transport_bid_id').touched && form.get('transport_bid_id').invalid">{{getErrorMessage('transport_bid_id')}}</mat-error>
+
+        <mat-form-field class="full-width">
+            <mat-label>Transport Plan Items</mat-label>
+            <mat-select formControlName="transport_plan_item_id">
+                <mat-option value="" selected></mat-option>
+                <mat-option *ngFor="let transportPlanItem of transportPlanItems" [value]="transportPlanItem.id">
+                    {{transportPlanItem.id}}
+                </mat-option>
+                </mat-select>
+        </mat-form-field>
+        <mat-error *ngIf="form.get('transport_plan_item_id').touched && form.get('transport_plan_item_id').invalid">{{getErrorMessage('transport_plan_item_id')}}</mat-error>
+
+
+        <mat-form-field class="full-width">
+            <input type="number" matInput formControlName="quantity" placeholder="Quantity">
+        </mat-form-field>
+        <mat-error *ngIf="form.get('quantity').touched && form.get('quantity').invalid">{{getErrorMessage('quantity')}}</mat-error>
+
+
+        <mat-form-field class="full-width">
+            <input type="number" matInput formControlName="unit" placeholder="Unit">
+        </mat-form-field>
+        <mat-error *ngIf="form.get('unit').touched && form.get('unit').invalid">{{getErrorMessage('unit')}}</mat-error>
+        
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button [disabled]="this.form.invalid" type="submit"  (click)="onSubmit()">Save</button>
+</div>
